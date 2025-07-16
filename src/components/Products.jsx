@@ -183,8 +183,7 @@ const Products = () => {
       </div>
     );
   };
-
-  return (
+return (
     <div className="products-container">
       <div className="products-header">
         <h2 className="products-title">Featured Products</h2>
@@ -194,7 +193,7 @@ const Products = () => {
         {['all',"men's clothing","women's clothing",'jewelery','electronics'].map(cat => (
           <button 
             key={cat} 
-            className={`filter-btn ${filter === data && cat==='all' || filter[0]?.category === cat ? 'active':''}`} 
+            className={`filter-btn ${(filter === data && cat==='all') || filter[0]?.category === cat ? 'active':''}`} 
             onClick={() => filterProduct(cat)}
           >
             {cat==='all'?'All Products':cat.charAt(0).toUpperCase()+cat.slice(1)}
@@ -205,5 +204,3 @@ const Products = () => {
     </div>
   );
 };
-
-export default Products;
