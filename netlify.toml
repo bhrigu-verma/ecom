@@ -29,66 +29,6 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Cache HTML files for shorter time
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-
-# Cache CSS and JS files
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Functions configuration (if you have serverless functions)
-[functions]
-  # Directory where your functions are stored
-  directory = "netlify/functions"
-  
-  # Node.js version for functions
-  node_bundler = "esbuild"
-
-# Development settings
-[dev]
-  command = "npm start"
-  port = 3000
-  publish = "build"
-  autoLaunch = false
-
-# Build processing
-[build.processing]
-  skip_processing = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[build.processing.html]
-  pretty_urls = true
-
-[build.processing.images]
-  compress = true
-
-# Plugin configuration
-[[plugins]]
-  package = "netlify-plugin-lighthouse"
-  
-  [plugins.inputs.audits]
-    output_path = "reports/lighthouse.html"
-    
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-
 # Context-specific settings
 [context.production]
   command = "npm run build"
@@ -97,11 +37,3 @@
 [context.deploy-preview]
   command = "npm run build"
   environment = { NODE_ENV = "production", CI = "false" }
-
-[context.branch-deploy]
-  command = "npm run build"
-  environment = { NODE_ENV = "production", CI = "false" }
-
-# Development context
-[context.dev]
-  environment = { NODE_ENV = "development" }
